@@ -1,0 +1,40 @@
+﻿@model StefanBank.Models.BankRepository
+@{
+    ViewData["Title"] = "Steveez Bank";
+}
+<table>
+
+    @foreach (var Customer in Model.Customers)
+    {
+        <tr>
+            <th>Kund</th>
+            <th>Adress</th>
+           
+        </tr>
+        <tr>
+            <td>
+                @Customer.Forname
+                @Customer.Surname
+            </td>
+            <td>
+                @Customer.Adress
+            </td>
+        <tr>
+            <th>Konto</th>
+            <th>Saldo</th>
+        </tr>
+        @foreach (var Account in Customer.Account)
+        {
+            <tr>
+                <td>
+                    @Account.AccountID
+                </td>
+                <td>
+                    @Account.Cash
+                </td>
+            </tr>
+        }
+
+        </tr>
+    }
+</table>
