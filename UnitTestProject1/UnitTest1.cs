@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using stef
-namespace UnitTestStefanBank
+
+namespace UnitTestProject1
 {
     [TestClass]
     public class UnitTest1
@@ -10,7 +10,5 @@ namespace UnitTestStefanBank
         public void TestMethod1()
         {
         }
-
-
     }
 }
