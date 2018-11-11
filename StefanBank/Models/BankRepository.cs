@@ -15,7 +15,7 @@ namespace StefanBank.Models
             Customers = new List<Customer>();
             AddCustomers();
         }
-        public BankRepository AddCustomers()
+        private BankRepository AddCustomers()
         {
             this.Customers.Add(new Customer()
             {

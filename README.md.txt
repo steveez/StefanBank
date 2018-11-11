@@ -1,0 +1,2 @@
+Ägare: stefan
+kOLARE : SAMUEL
