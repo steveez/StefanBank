@@ -1,10 +1,10 @@
-﻿@model StefanBank.Models.BankRepository
+﻿@model List<Customer>
 @{
     ViewData["Title"] = "Steveez Bank";
 }
 <table>
 
-    @foreach (var Customer in Model.Customers)
+    @foreach (var Customer in Model)
     {
         <tr>
             <th>Kund</th>

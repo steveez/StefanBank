@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StefanBank.Models;
+using System.Linq;
 
 namespace StefanBank.Models
 {
     public class BankRepository
     {
-        public List<Customer> Customers { get; set; }
+        public static List<Customer> Customers { get; set; }
 
         public BankRepository()
         {
-            Customers = new List<Customer>();
-            AddCustomers();
+            if (Customers == null)
+            {
+                Customers = new List<Customer>();
+                AddCustomers();
+            }
+          
         }
         public BankRepository AddCustomers()
         {
-            this.Customers.Add(new Customer()
+            Customers.Add(new Customer()
             {
                 CostomerID = 1,
                 Forname = "Stefan",
@@ -37,7 +42,7 @@ namespace StefanBank.Models
                 }
             }
             });
-            this.Customers.Add(new Customer()
+           Customers.Add(new Customer()
             {
                 CostomerID = 1,
                 Forname = "Test",
@@ -57,7 +62,7 @@ namespace StefanBank.Models
                 }
             }
             });
-            this.Customers.Add(new Customer()
+           Customers.Add(new Customer()
             {
                 CostomerID = 1,
                 Forname = "Micke",
@@ -80,6 +85,15 @@ namespace StefanBank.Models
 
 
             return this;
+
+        }
+        public void Withdraw(int Amount, int AccountID)
+        {
+            Customers.FirstOrDefault(c => c.Account.Select(a => a.AccountID == AccountID).First()).Account.FirstOrDefault(a => a.AccountID == AccountID).Cash -= Amount;
+        }
+        public void Deposit(int Amount, int AccountID)
+        {
+            Customers.FirstOrDefault(c => c.Account.Select(a => a.AccountID == AccountID).First()).Account.FirstOrDefault(a => a.AccountID == AccountID).Cash += Amount;
 
         }
     }

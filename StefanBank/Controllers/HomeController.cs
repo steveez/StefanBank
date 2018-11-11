@@ -10,19 +10,23 @@ namespace StefanBank.Controllers
 {
     public class HomeController : Controller
     {
-       
 
-        public BankRepository bankRepository { get; set; }
 
-       
+        private BankRepository bankRepository;
+
+
+
         public IActionResult Index()
         {
 
-            int MUPP = 100000;
-            bankRepository = new BankRepository();
-             //BankRepository test = bankRepository.AddCustomers();
-            
-            return View(bankRepository);
+            if(bankRepository == null)
+            {
+                bankRepository = new BankRepository();
+              
+            }
+
+
+            return View(BankRepository.Customers);
         }
 
         public IActionResult About()
