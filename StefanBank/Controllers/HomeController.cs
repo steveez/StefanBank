@@ -17,6 +17,8 @@ namespace StefanBank.Controllers
        
         public IActionResult Index()
         {
+
+            int MUPP = 100000;
             bankRepository = new BankRepository();
              //BankRepository test = bankRepository.AddCustomers();
             
