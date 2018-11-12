@@ -56,7 +56,7 @@ namespace XUnitTestProject1
             int AccountID = 1;
             int Cash      = 7000;
 
-            var Account = BankRepository.Customers.Select(c => c.Account.Where(a => a.AccountID == AccountID).FirstOrDefault()).FirstOrDefault();
+            var Account = BankRepository.GetAccountById(AccountID);
             Account.Cash = 10000;
 
             Account.TransferFromThis(2, Cash);
@@ -74,8 +74,8 @@ namespace XUnitTestProject1
             int AccountID2 = 2;
             int Cash = 7000;
 
-            var AccountFrom = BankRepository.Customers.Select(c => c.Account.Where(a => a.AccountID == AccountID).FirstOrDefault()).FirstOrDefault();
-            var AccountTo   =   BankRepository.Customers.Select(c => c.Account.Where(a => a.AccountID == AccountID2).FirstOrDefault()).FirstOrDefault();
+            var AccountFrom = BankRepository.GetAccountById(AccountID);
+            var AccountTo   = BankRepository.GetAccountById(AccountID2);
 
 
             AccountFrom.Cash = 10000;
@@ -96,8 +96,8 @@ namespace XUnitTestProject1
             int AccountID2 = 2;
             int Cash = 50000;
 
-            var AccountFrom = BankRepository.Customers.Select(c => c.Account.Where(a => a.AccountID == AccountID).FirstOrDefault()).FirstOrDefault();
-            var AccountTo = BankRepository.Customers.Select(c => c.Account.Where(a => a.AccountID == AccountID2).FirstOrDefault()).FirstOrDefault();
+            var AccountFrom = BankRepository.GetAccountById(AccountID);
+            var AccountTo   = BankRepository.GetAccountById(AccountID2);
 
 
             AccountFrom.Cash = 10000;

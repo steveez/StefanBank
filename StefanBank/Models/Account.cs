@@ -13,15 +13,14 @@ namespace StefanBank.Models
         public ResponseClass TransferFromThis (int recieverAccountID, int cash)
         {
             ResponseClass  Res  = new ResponseClass();
-            BankRepository bank = new BankRepository();
 
-            var thisAccount     = BankRepository.Customers.Select(c => c.Account.Where(a => a.AccountID == AccountID).FirstOrDefault()).FirstOrDefault();
-            var recieverAccount = BankRepository.Customers.Select(c => c.Account.Where(a => a.AccountID == recieverAccountID).FirstOrDefault()).FirstOrDefault();
+            var thisAccount     = BankRepository.GetAccountById(AccountID);
+            var recieverAccount = BankRepository.GetAccountById(recieverAccountID);
 
             //kollar så att båda konton finns
-            if(thisAccount == null ||recieverAccount == null)
+            if (thisAccount == null ||recieverAccount == null)
             {
-                Res.Message = "Felaktigt kontonummer";
+                Res.Message = $"Kontonummer {recieverAccountID} hittades ej";
                 return Res;
             }
 
@@ -35,13 +34,12 @@ namespace StefanBank.Models
             {
                 thisAccount.Cash     -= cash;
                 recieverAccount.Cash += cash;
-                Res.Message = $"Överföring på {cash}kr från konto {thisAccount} till {recieverAccount} lyckades";
+                Res.Message = $"Överföring på {cash} kr från konto {thisAccount.AccountID} till konto {recieverAccount.AccountID} lyckades. " +
+                    $"Saldo på konto {thisAccount.AccountID}: {thisAccount.Cash} kr. " +
+                    $"Saldo på konto {recieverAccount.AccountID}: {recieverAccount.Cash} kr.";
                 Res.Success = true;
                 return Res;
             }
-
-
-
         }
     }
 }
