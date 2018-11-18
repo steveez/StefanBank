@@ -44,7 +44,7 @@ namespace StefanBank.Models
             });
            Customers.Add(new Customer()
             {
-                CostomerID = 1,
+                CostomerID = 2,
                 Forname = "Test",
                 Surname = "Efternamn",
                 Adress = "Någon adress",
@@ -64,7 +64,7 @@ namespace StefanBank.Models
             });
            Customers.Add(new Customer()
             {
-                CostomerID = 1,
+                CostomerID = 3,
                 Forname = "Micke",
                 Surname = "Andersson",
                 Adress = "Någon adress",
@@ -95,6 +95,20 @@ namespace StefanBank.Models
         {
             Customers.FirstOrDefault(c => c.Account.Select(a => a.AccountID == AccountID).First()).Account.FirstOrDefault(a => a.AccountID == AccountID).Cash += Amount;
 
+        }
+
+        public static Account GetAccountById(int AccountId)
+        {
+            Account account = null;
+
+            var customer = Customers.Where(c => c.Account.Any(a => a.AccountID == AccountId)).FirstOrDefault();
+
+            if(customer != null)
+            {
+                account = customer.Account.Where(a => a.AccountID == AccountId).FirstOrDefault();
+            }
+
+            return account;
         }
     }
 
