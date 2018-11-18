@@ -1,0 +1,55 @@
+﻿@model StefanBank.ViewModels.TransferViewModel
+
+@{
+    ViewData["Title"] = "Överföring";
+}
+
+
+<h2>Överföring</h2>
+
+
+@if (Model != null || Model.ResponseClass != null)
+{
+    @if (Model.ResponseClass.Success == false)
+    {
+        <h4 style="font-weight: bold; color:red">@Model.ResponseClass.Message</h4>
+    }
+    else if (Model.ResponseClass.Success)
+    {
+        <h4 style="font-weight: bold; color:green">@Model.ResponseClass.Message</h4>
+    }
+}
+
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Transfer" asp-action="Index" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FromAccountId" class="control-label"></label>
+                <input asp-for="FromAccountId" class="form-control" name="FromAccountId" />
+                <span asp-validation-for="FromAccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToAccountId" class="control-label"></label>
+                <input asp-for="ToAccountId" class="form-control" name="ToAccountId" />
+                <span asp-validation-for="ToAccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" name="amount" min="0" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Transfer" class="btn btn-success" name="button" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using StefanBank.Models;
 
 namespace StefanBank.ViewModels
 {
@@ -14,6 +15,8 @@ namespace StefanBank.ViewModels
         public int ToAccountId { get; set; }
         [DisplayName("Amount")]
         public int Amount { get; set; }
+
+        public ResponseClass ResponseClass { get; set; } = new ResponseClass();
 
         public string Message { get; set; }
     }
